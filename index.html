@@ -1,0 +1,63 @@
+Olá! Eu sou uma estudante do Colégio Cívico Militar 
+
+Seja bem-vindo(a) ao meu repositório! Aqui você vai encontrar meus projetos de robótica, desenvolvidos com muito esforço e dedicação.
+
+
+Sou estudante do Colégio Cívico Militar e tenho uma paixão por tecnologia e inovação. Estou aprendendo sobre robótica nas aulas do professor Samuel, e esses projetos são uma forma de colocar em prática tudo que tenho aprendido. 
+
+Nestes projetos, explorei criação de semáfaros cruzados, semáfaros de pedestres tudo baseado nas aulas do professor Samuel. Meu objetivo é criar soluções criativas e funcionais, além de aprender cada vez mais sobre o universo da robótica.
+
+Se quiser conversar, tirar dúvidas ou trocar ideias, fique à vontade para me chamar! Você pode me encontrar em email emilly.ramos.coelho@escola.pr.gov.br
+// Definição dos pinos dos LEDs
+const int semaforoVerde = 2;    // Semáforo cruzado - verde
+const int semaforoAmarelo = 3;  // Semáforo cruzado - amarelo
+const int semaforoVermelho = 4; // Semáforo cruzado - vermelho
+
+const int pedestreVerde = 5;    // Semáforo pedestre - verde
+const int pedestreVermelho = 6; // Semáforo pedestre - vermelho
+
+// Tempo de duração de cada fase (em milissegundos)
+const unsigned long tempoVerde = 5000;    // 5 segundos
+const unsigned long tempoAmarelo = 2000;  // 2 segundos
+const unsigned long tempoVermelho = 7000; // 7 segundos
+
+void setup() {
+  // Configura os pinos como saída
+  pinMode(semaforoVerde, OUTPUT);
+  pinMode(semaforoAmarelo, OUTPUT);
+  pinMode(semaforoVermelho, OUTPUT);
+  pinMode(pedestreVerde, OUTPUT);
+  pinMode(pedestreVermelho, OUTPUT);
+  
+  // Inicia com o semáforo cruzado vermelho e pedestre vermelho
+  digitalWrite(semaforoVerde, LOW);
+  digitalWrite(semaforoAmarelo, LOW);
+  digitalWrite(semaforoVermelho, HIGH);
+  digitalWrite(pedestreVerde, LOW);
+  digitalWrite(pedestreVermelho, HIGH);
+}
+
+void loop() {
+  // Ciclo do semáforo cruzado
+  // 1. Verde para o cruzado, vermelho para pedestres
+  digitalWrite(semaforoVermelho, LOW);
+  digitalWrite(semaforoVerde, HIGH);
+  digitalWrite(pedestreVermelho, HIGH);
+  digitalWrite(pedestreVerde, LOW);
+  delay(tempoVerde);
+  
+  // 2. Amarelo para o cruzado
+  digitalWrite(semaforoVerde, LOW);
+  digitalWrite(semaforoAmarelo, HIGH);
+  delay(tempoAmarelo);
+  
+  // 3. Vermelho para o cruzado, verde para pedestres
+  digitalWrite(semaforoAmarelo, LOW);
+  digitalWrite(semaforoVermelho, HIGH);
+  digitalWrite(pedestreVerde, HIGH);
+  digitalWrite(pedestreVermelho, LOW);
+  delay(tempoVermelho);
+  
+  // 4. Amarelo para o pedestre (opcional, se desejar)
+  // Pode adicionar aqui se quiser um aviso antes de parar
+}
